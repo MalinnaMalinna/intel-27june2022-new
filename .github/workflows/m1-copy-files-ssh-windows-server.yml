@@ -38,6 +38,18 @@ jobs:
       - name: Check weather Zip file is created or not.
         run: ls -l public.zip
 
+      # - name: Copy the Public Folder to Ubuntu
+      #   uses: marcodallasanta/ssh-scp-deploy@v1.2.0
+      #   with:
+      #     local: 'public/*'
+      #     remote: 'public/'
+      #     host: ${{secrets.HOST}}
+      #     user: ${{secrets.USER}}
+      #     password: ${{secrets.PASSWORD}}
+      #     ssh_options: -o StrictHostKeyChecking=no
+      #     pre_upload: rmdir /s /q public
+      #     post_upload: iisreset /stop && xcopy /s /y public C:\inetpub\wwwroot\ && iisreset /start
+      
       - name: Copy the Public Folder to Ubuntu
         uses: marcodallasanta/ssh-scp-deploy@v1.2.0
         with:
@@ -48,8 +60,8 @@ jobs:
           password: ${{secrets.PASSWORD}}
           ssh_options: -o StrictHostKeyChecking=no
           pre_upload: rmdir /s /q public
-          post_upload: iisreset /stop && xcopy /s /y public C:\inetpub\wwwroot\ && iisreset /start
-      
+          post_upload: iisreset /stop && xcopy /s/y public C:\inetpub\wwwroot\ && iisreset /start
+    
 
       # - name: Upload to Artifact
       #   run: |
