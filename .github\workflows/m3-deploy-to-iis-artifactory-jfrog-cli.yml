@@ -1,9 +1,9 @@
 name: Method 3 - Deploy to IIS using Artifactory and JFrog Cli
 
 on:
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
 
   workflow_dispatch:
 
