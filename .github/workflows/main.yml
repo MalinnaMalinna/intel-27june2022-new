@@ -8,6 +8,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  GITHUBRUNNERID: $GITHUB_RUN_NUMBER
+
 jobs:
   build:
     name: Build
@@ -39,7 +42,7 @@ jobs:
 
       - name: Upload to Artifact
         run: |
-          curl -H "X-JFrog-Art-Api:${{ secrets.JFROG_API_KEY }}" -T public.zip "https://galgal.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
+          curl -H "X-JFrog-Art-Api:${{ secrets.JFROG_API_KEY }}" -T public.zip "https://galgal.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
 
   deploy:
     name: Deploy
@@ -56,7 +59,11 @@ jobs:
         run: ls
 
       - name: Download from jfrog
-        run: curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://galgal.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
+        run: curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://galgal.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
 
       - name: Check what is downloaded
         run: ls
+      
+      - name: Test, if the File is donwloded successfully or not.
+        run: |
+          ls -la
