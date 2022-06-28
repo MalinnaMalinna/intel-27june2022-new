@@ -1,9 +1,9 @@
 name: Method 2 - Self Hosted Windows Runner
 
 on: 
-  push:
-    branches:
-      - "self-hosted"
+  # push:
+  #   branches:
+  #     - "self-hosted"
   workflow_dispatch:
 
 jobs:
