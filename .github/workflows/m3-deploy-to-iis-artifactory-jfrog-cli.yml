@@ -59,8 +59,9 @@ jobs:
 
       - name: Run JFrog CLI
         run: |
-          jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://galgal.jfrog.io/artifactory" --access-token "cmVmdGtuOjAxOjE2ODgwMDEzNzA6ZGxWZmRnRjFEaUNNdUpSR0FMWGxmQ3VVeklv"
-     
+          jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://galgal.jfrog.io/artifactory" --user ${{secrets.USER}}  --password ${{secrets.PASSWORD}}
+      # jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://galgal.jfrog.io/artifactory" --access-token "cmVmdGtuOjAxOjE2ODgwMDEzNzA6ZGxWZmRnRjFEaUNNdUpSR0FMWGxmQ3VVeklv"
+      
       - name: Unzip the File
         run: |
           Expand-Archive .\public.zip . -Force
