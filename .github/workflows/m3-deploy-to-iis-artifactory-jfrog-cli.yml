@@ -59,7 +59,8 @@ jobs:
 
       - name: Run JFrog CLI
         run: |
-          jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://galgal.jfrog.io/artifactory/jfrogintel27june2022-generic-local"
+          jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://galgal.jfrog.io/artifactory/jfrogintel27june2022-generic-local" --user ${{secrets.USER}} --password ${{secrets.PASSWORD}}
+     
       - name: Unzip the File
         run: |
           Expand-Archive .\public.zip . -Force
